@@ -13,6 +13,12 @@
     <title>Registration Page</title>
 </head>
 <body>
-
+<form:form method="post" modelAttribute="userData">
+    <h3>Please fill in your details:</h3>
+    First Name: <form:input path="firstName" required="true"/>
+    Surname: <form:input path="surname" required="true"/>
+    E-mail address: <form:input path="email" required="true"/>
+    Age: <form:input path="age" required="true"/>
+</form:form>
 </body>
 </html>
