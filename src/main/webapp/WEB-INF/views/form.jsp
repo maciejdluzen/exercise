@@ -13,37 +13,45 @@
     <title>Registration Page</title>
     <script type="text/javascript">
         function notBlankValidate() {
-            let firstName = document.getElementById("firstName");
-            let surname = document.getElementById("surname");
-            let email = document.getElementById("email");
-            let age = document.getElementById("age");
+            let firstName = document.getElementById('firstName');
+            let surname = document.getElementById('surname');
+            let email = document.getElementById('email');
+            let age = document.getElementById('age');
 
-            if(firstName.value === "") {
-                firstName.setCustomValidity("Field 'first name' must be filled out");
+            if(firstName.value === '') {
+                firstName.setCustomValidity('Field first name must be filled out');
                 return false;
+            } else {
+                firstName.setCustomValidity('');
             }
-            if(surname.value === "") {
-                surname.setCustomValidity("Field 'surname' must be filled out");
+
+            if(surname.value === '') {
+                surname.setCustomValidity('Field surname must be filled out');
                 return false;
+            } else {
+                surname.setCustomValidity('');
             }
-            if(email.value === "") {
-                email.setCustomValidity("Field 'email' must be filled out");
-                return false;
+
+            if(email.value === '') {
+                email.setCustomValidity('Field email must be filled out');
+            } else {
+                email.setCustomValidity('');
             }
-            if (age.value === "") {
-                age.setCustomValidity("Field 'age' must be filled out");
-                return false;
+
+            if (age.value === '') {
+                age.setCustomValidity('Field age must be filled out');
+            } else {
+                age.setCustomValidity('');
             }
-            return true;
         }
         
         function validateEmail() {
-            let email = document.getElementById("email");
+            let email = document.getElementById('email');
             let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             if(email.value.match(emailRegex)) {
                 return true;
             } else {
-                email.setCustomValidity("Incorrect email");
+                email.setCustomValidity('Incorrect email');
                 return false;
             }
         }
@@ -56,7 +64,7 @@
     </script>
 </head>
 <body>
-<form:form name="userdetails" method="post" modelAttribute="userData" onsubmit="return validate()">
+<form:form name="userdetails" method="post" modelAttribute="userData" onsubmit="return notBlankValidate()">
     <h3>Please fill in your details:</h3>
     First Name: <form:input name="firstName" id="firstName" path="firstName"/>
     Surname: <form:input name="surname" id="surname" path="surname"/>
@@ -64,5 +72,7 @@
     Age: <form:input name="age" id="age" path="age"/>
     <button type="submit">Submit</button>
 </form:form>
+<p id="validateMsg"></p>
+<p id="validity"></p>
 </body>
 </html>
