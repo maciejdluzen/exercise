@@ -22,7 +22,6 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @GetMapping
     public String getRegistrationPage(Model model) {
         model.addAttribute("userData", new AddUserDTO());

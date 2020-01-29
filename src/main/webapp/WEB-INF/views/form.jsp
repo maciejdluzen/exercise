@@ -11,14 +11,58 @@
 <html>
 <head>
     <title>Registration Page</title>
+    <script type="text/javascript">
+        function notBlankValidate() {
+            let firstName = document.getElementById("firstName");
+            let surname = document.getElementById("surname");
+            let email = document.getElementById("email");
+            let age = document.getElementById("age");
+
+            if(firstName.value === "") {
+                firstName.setCustomValidity("Field 'first name' must be filled out");
+                return false;
+            }
+            if(surname.value === "") {
+                surname.setCustomValidity("Field 'surname' must be filled out");
+                return false;
+            }
+            if(email.value === "") {
+                email.setCustomValidity("Field 'email' must be filled out");
+                return false;
+            }
+            if (age.value === "") {
+                age.setCustomValidity("Field 'age' must be filled out");
+                return false;
+            }
+            return true;
+        }
+        
+        function validateEmail() {
+            let email = document.getElementById("email");
+            let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            if(email.value.match(emailRegex)) {
+                return true;
+            } else {
+                email.setCustomValidity("Incorrect email");
+                return false;
+            }
+        }
+
+        function validate() {
+            let notBlank = notBlankValidate();
+            let validEmail = validateEmail();
+            return notBlank && validEmail;
+        }
+    </script>
 </head>
 <body>
-<form:form method="post" modelAttribute="userData">
+<form:form name="userdetails" method="post" modelAttribute="userData" onsubmit="return validate()">
     <h3>Please fill in your details:</h3>
-    First Name: <form:input path="firstName" required="true"/>
-    Surname: <form:input path="surname" required="true"/>
-    E-mail address: <form:input path="email" required="true"/>
-    Age: <form:input path="age" required="true"/>
+    First Name: <form:input name="firstName" id="firstName" path="firstName"/>
+    Surname: <form:input name="surname" id="surname" path="surname"/>
+    E-mail address: <form:input name="email" id="email" path="email"/>
+    Age: <form:input name="age" id="age" path="age"/>
+    <button type="submit">Submit</button>
 </form:form>
 </body>
 </html>
