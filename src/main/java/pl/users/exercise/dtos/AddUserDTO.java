@@ -15,6 +15,6 @@ public class AddUserDTO {
     private String surname;
     @NotBlank @Email @UniqueEmail
     private String email;
-    @NotNull @Min(19) @Max(120)
+    @NotNull @Min(19)
     private Integer age;
 }
