@@ -12,6 +12,6 @@
     <title>Failure</title>
 </head>
 <body>
-<h1>Error! Wrong format of email address!</h1>
+<h1>Error! User with this email address already exists!</h1>
 </body>
 </html>

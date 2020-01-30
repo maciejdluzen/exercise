@@ -12,6 +12,6 @@
     <title>Success</title>
 </head>
 <body>
-<h1>Success!</h1>
+<h1>Success! User has been added to the database</h1>
 </body>
 </html>
