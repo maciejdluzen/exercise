@@ -75,7 +75,7 @@
     <h3>Please fill in your details:</h3>
     First Name: <form:input id="firstName" path="firstName"/>
     Surname: <form:input id="surname" path="surname"/>
-    E-mail address: <form:input id="email" path="email"/>
+    E-mail address: <form:input id="email" path="email"/><form:errors path="email" element="p"/>
     Age: <form:input id="age" path="age"/>
     <button type="submit">Submit</button>
 </form:form>
