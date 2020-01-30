@@ -43,6 +43,7 @@
             } else {
                 age.setCustomValidity('');
             }
+            return true;
         }
         
         function validateEmail() {
@@ -56,23 +57,27 @@
             }
         }
 
-        function validate() {
-            let notBlank = notBlankValidate();
-            let validEmail = validateEmail();
-            return notBlank && validEmail;
+        function validateAge() {
+            const MIN_AGE = 18;
+            let age = document.getElementById('age');
+
+            if(age.value < MIN_AGE) {
+                age.setCustomValidity('You must be older than 18 years old');
+                return false;
+            } else {
+                age.setCustomValidity('');
+            }
         }
     </script>
 </head>
 <body>
-<form:form name="userdetails" method="post" modelAttribute="userData" onsubmit="return notBlankValidate()">
+<form:form name="userdetails" method="post" modelAttribute="userData" onsubmit="return notBlankValidate() && validateEmail() && validateAge()">
     <h3>Please fill in your details:</h3>
-    First Name: <form:input name="firstName" id="firstName" path="firstName"/>
-    Surname: <form:input name="surname" id="surname" path="surname"/>
-    E-mail address: <form:input name="email" id="email" path="email"/>
-    Age: <form:input name="age" id="age" path="age"/>
+    First Name: <form:input id="firstName" path="firstName"/>
+    Surname: <form:input id="surname" path="surname"/>
+    E-mail address: <form:input id="email" path="email"/>
+    Age: <form:input id="age" path="age"/>
     <button type="submit">Submit</button>
 </form:form>
-<p id="validateMsg"></p>
-<p id="validity"></p>
 </body>
 </html>

@@ -5,5 +5,5 @@ import pl.users.exercise.domain.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-
+    boolean existsByEmail(String email);
 }
