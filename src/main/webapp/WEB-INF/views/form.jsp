@@ -14,6 +14,58 @@
 </head>
 <script type="text/javascript">
 
+    function blankValidation() {
+        let firstName = document.getElementById('firstName');
+        let surname = document.getElementById('surname');
+        let email = document.getElementById('email');
+        let age = document.getElementById('age');
+
+        let msg = '';
+
+        if(firstName.value === '') {
+            msg += "First name is required <br/>";
+        }
+        if(surname.value === '') {
+            msg += "Surname is required <br/>";
+        }
+        if(email.value === '') {
+            msg += "Email address is required <br/>";
+        }
+        if(age.value === '') {
+            msg += "Age is required <br/>";
+        }
+        if(msg !== '') {
+            document.getElementById('errors').innerHTML = msg;
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function valEmail() {
+        let email = document.getElementById('email');
+        let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+        let msg = '';
+
+        if(!email.value.match(emailRegex)) {
+            msg += "Wrong format of email address <br/>";
+            document.getElementById('errors').innerHTML = msg;
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    function validate() {
+        if(blankValidation()) {
+            if(valEmail()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     function notBlankValidate() {
         let firstName = document.getElementById('firstName');
         let surname = document.getElementById('surname');
@@ -69,13 +121,14 @@
     }
 </script>
 <body>
-<form:form name="userdetails" method="post" modelAttribute="userData" onsubmit="return notBlankValidate() && validateEmail() && validateAge()">
+<form:form name="userdetails" method="post" modelAttribute="userData" onsubmit="return valEmail() && blankValidation()">
     <h3>Please fill in your details:</h3>
-    First Name: <form:input id="firstName" path="firstName"/>
-    Surname: <form:input id="surname" path="surname"/>
-    E-mail address: <form:input id="email" path="email"/>
-    Age: <form:input id="age" path="age"/>
+    First Name: <form:input name="fName" id="firstName" path="firstName"/>
+    Surname: <form:input name="sName" id="surname" path="surname"/>
+    E-mail address: <form:input name="email" id="email" path="email"/>
+    Age: <form:input name="age" id="age" path="age"/>
     <button type="submit">Submit</button>
+    <p id="errors"></p>
 </form:form>
 
 </body>
